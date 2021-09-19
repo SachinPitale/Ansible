@@ -1,0 +1,20 @@
+# or
+# and
+# not
+
+---
+- name: working with logical operators
+  hosts: localhost
+  gather_facts: false
+  vars:
+    x: 5
+    y: 7
+    p: [4,5,6]
+  tasks:
+    - debug:
+        msg:
+          - "The value of x is: {{x}}, The value of y is: {{y}} and p list is : {{p}} "
+          - "x < y and y in p: {{ x < y and y in p }}"
+          - "{{ (4 < 5 ) and ( 5 > 1 ) and ( 5 > 2 ) and (9 = 0)}}"
+          - "{{(4 > 5) or (5 > 1 ) or (5 < 2) or ( 9 == 0)}}"
+          - "{{ not ( 4 > 1 ) }}sss"

@@ -1,0 +1,19 @@
+# Ansible Handlers
+# Handlers are just like regular tasks in an Ansible Playbook.
+
+---
+  - hosts: localhost
+    gather_facts: false
+    become: yes
+    tasks:
+      - name: Install httpd
+        yum:
+          name: httpd
+          state: present
+        notify:
+          - start httpd
+    handlers:
+      - name: start httpd
+        service:
+          name: httpd
+          state: started

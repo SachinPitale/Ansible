@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - debug:
+        var: inventory_hostname
+    - debug:
+        var: hostvars[inventory_hostname]
+    - debug:
+        var: hostvars

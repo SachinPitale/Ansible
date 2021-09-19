@@ -1,0 +1,10 @@
+---
+- name: Print the variable value using debug module var parameter
+  hosts: local
+  tasks:
+    - name: print the inventory hostname parameter
+      debug:
+        msg: "The host name is: {{inventory_hostname}}"
+    - name: Print directly variable value using var parameter
+      debug:
+        var: inventory_hostname

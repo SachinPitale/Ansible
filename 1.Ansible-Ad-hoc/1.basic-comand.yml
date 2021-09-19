@@ -1,0 +1,78 @@
+
+# To check the ping command
+# ping module
+ansible all -m ping
+
+
+# To check the uptime of system
+ansible all -m shell -a "uptime"
+
+# Check RAM usage only on two groups
+ansible webserver:dbserver -m shell -a "free -m"
+
+# use custom inventory file
+ansible -i my_inventory all -m shell -a "df -h"
+
+
+
+
+# To find detail information about the any module
+ansible-doc yum
+
+# When we run any ad-hoc command, that ansible push the module to ansible node and this module store in user home directory as .ansible
+# fork = define ansible executing playbook to number of server, default value is 5  
+
+# to list all the ansible parameter option
+ansible -h
+
+# To find list of information name by group use --list-hosts
+ansible all -m ping --list-hosts
+
+# To install the package without configure ssh password less connection to ansible node server
+ansible all -m yum -a "name=httpd state=present" -k -b -K
+
+-k: ask ansible password
+-b : become root user
+-K: ask root password
+
+# debug module run your ansible master node only not managed ansible node
+ansible all -m debug -a "msg='This is debug module'"
+
+# to find of list of host from inventory
+ansible all --list-hosts 
+
+# find all the group from inventory file
+ansible all -m debug -a "var=groups"
+
+# find all the group names from inventory file
+ansible all -m debug -a "var=groups.keys() "
+# To list all the module
+ansible-doc -l 
+
+optional arguments:
+--ask-vault-pass      ask for vault password
+--list-hosts          outputs a list of matching hosts; does not execute anything else
+--syntax-check        perform a syntax check on the playbook, but do not execute it
+--version             show program's version number
+--vault-id VAULT_IDS  the vault identity to use
+--vault-password-file VAULT_PASSWORD_FILES
+-C, --check           don't make any changes; instead, try to predict some  of the changes that may occur
+-D, --diff            when changing (small) files and templates, show the differences in those files; works great with --check
+-a MODULE_ARGS, --args MODULE_ARGS
+-M MODULE_PATH, --module-path MODULE_PATH
+-e EXTRA_VARS, --extra-vars EXTRA_VARS
+-f FORKS, --forks FORKS
+-h, --help            show this help message and exit
+-t TREE, --tree TREE  log output to this directory
+-v, --verbose         verbose mode (-vvv for more, -vvvv to enable connection debugging)
+-b, --become          run operations with become (does not imply password prompting)
+--private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+-T TIMEOUT, --timeout TIMEOUT override the connection timeout in seconds (default=10)
+-k, --ask-pass        ask for connection password
+-u REMOTE_USER, --user REMOTE_USER connect as this user (default=None)
+-c CONNECTION, --connection CONNECTION connection type to use (default=smart)
+
+
+
+
+

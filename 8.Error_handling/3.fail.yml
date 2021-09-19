@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - command: "ls /home"
+      registor: out
+    - fail:
+        msg: "Failed becasue of rc is 0"
+      when: out.rc==0

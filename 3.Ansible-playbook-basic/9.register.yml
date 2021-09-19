@@ -1,0 +1,31 @@
+# register
+# Ansible register are used to store the output of a module/task into a variable
+# set_fact
+# we define a new variable
+
+
+---
+- name: Store the command value in register variable
+  hosts: local
+  gather_facts: False
+  tasks:
+    - name: Check bash version
+      shell: "bash --version"
+      register: bash_version
+    - name: Print the register value
+      debug:
+        var: bash_version
+    - name: Print only standard output
+      debug:
+        var: bash_version.stdout
+    - name: split the standard output
+      debug:
+        var:  bash_version.stdout.split('n')[1].split(' ')[1].split( '(')[0]
+    - name: Store entire output in one variable
+      set_fact:
+        bash__version: "{{bash_version.stdout.split('n')[1].split(' ')[1].split( '(')[0]}}"
+    - name: print value
+      debug:
+        var: bash__version
+
+

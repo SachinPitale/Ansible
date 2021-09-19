@@ -1,0 +1,12 @@
+# Create the ansible role in /etc/ansible/roles directory
+# command to create ansible role
+# ansible-galaxy init nginx --offline
+
+
+---
+- name: using roles
+  hosts: AppServers
+  gather_facts: false
+  become: yes
+  roles:
+    - install_java

@@ -1,0 +1,13 @@
+# ansible-playbook 15.cmd_line_arg_sequence_list.yml -e "{'x': [3,4,5,6,7]}"
+# ansible-playbook 15.cmd_line_arg_sequence_list.yml -e "{'x': {'one':1,'two':2}}" # for dict variable
+# ansible-playbook 15.cmd_line_arg_sequence_list.yml -e "@11-variable-values-file.yml" # passing variable file
+
+---
+- name: print list command line argument
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: print command line argument
+      debug:
+        msg:
+          - "This is value of {{x}}"

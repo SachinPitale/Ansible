@@ -1,0 +1,23 @@
+# Comparison Operators
+# These are very important to work with conditional operators
+# The result of comparison operators is either true or false
+# operators,
+# ==, !=, >, <, >=, <= 
+
+
+---
+- name: working with comparison operators
+  hosts: localhost
+  gather_facts: false
+  vars:
+    x: 6
+    y: 10
+  tasks:
+    - debug:
+        msg:
+          - "x == y:  { {x == y }}"
+          - "x != y:  {{ x != y }}"
+          - "x > y:  {{ x > y }}"
+          - "x < y:  {{ x < y }}"
+          - "x << y:  {{ x << y }}"
+          - "x >> y:  {{ x >> y }}"

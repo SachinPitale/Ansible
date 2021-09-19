@@ -1,0 +1,27 @@
+---
+- name: To print the variable from var file
+  hosts: localhost
+  gather_facts: False
+  #vars_files: 11-variable-values-file.yml  # declare the only for one file
+  vars_files:
+    - 11-variable-values-file.yml
+    - 13-variable-values-file.json  
+  tasks:
+    - name: print the variable from var file
+      debug:
+        var: pkgs
+    - name: print the variable from var file
+      debug:
+        var: y
+    - name: print the variable from var file
+      debug:
+        var: x
+    - name: print the variable from var file
+      debug:
+        var: p
+    - name: print the variable from var file
+      debug:
+        var: q
+    - name: print the variable from var file
+      debug:
+        var: r    

@@ -1,0 +1,17 @@
+# Inlie conditional statement is are same like if-else condition in other programming languages
+---
+- name: single usage of Inline conditional  statement (if else)
+  hosts: localhost
+  gather_facts: false
+  vars:
+    x: 5
+    y: 9
+  tasks:
+    - name: Display X is greater number than y
+      debug:
+        msg: "The greter number is {{x}}"
+      when: x > y
+    - name: Display y is greater number than x
+      debug:
+        msg: "The greter number is {{y}}"
+      when: y > x    

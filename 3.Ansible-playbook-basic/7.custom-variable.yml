@@ -1,0 +1,42 @@
+# Custom Variable
+# Generally we will represent variable in yml/playbook as key value pair representation as follow
+#key:value 
+#x:23
+# y:5.24
+# This is also called as scaler representation of data. It store single value
+#Note: Ansible variable names should be letter, numbers, underscors,and they should always start with letter.
+# Data Types
+# int (x:23)
+# float (y:4.56)
+# string (my_name: sachin, my_name:"sachin")
+# bool (x: true|True|False|yes|no|false)
+
+---
+- name: Define custom variable
+  hosts: local
+  gather_facts: false
+  vars:
+    x: 23
+    my_number: 87
+    my_name: "sachin"
+    my_bool: false
+
+  tasks:
+    - name: Print the value of variable
+      debug:
+        var: x
+    - name: Print all the variable value using msg parameter
+      debug:
+        msg:
+          - "This is value of x : {{x}}"
+          - "This is my_number of : {{my_number}}"
+          - "This is my_name of : {{my_name}}"
+    - name: Print the type of each variable
+      debug:
+        msg:
+          - "This is value of x : {{x}} and type is {{x|type_debug}}"
+          - "This is my_number of : {{my_number}} and type is {{my_number|type_debug}}"
+          - "This is my_name of : {{my_name}} and type is {{my_name|type_debug}}"
+          - "This is my_name of : {{my_bool}} and type is {{my_bool|type_debug}}"
+
+

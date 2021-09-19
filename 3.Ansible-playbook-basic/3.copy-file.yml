@@ -1,0 +1,16 @@
+---
+- name: Playbook for all server
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Copy file to manage node
+      copy:
+        src: web.xml
+        dest: webserver.xml
+      become: yes
+    - name: Create a empty file
+      file:
+        path: web.config
+        state: touch
+        mode: 0755
+      become: yes

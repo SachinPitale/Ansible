@@ -1,0 +1,29 @@
+# To read the variable from user we use vars_prompt
+
+
+---
+- name: Print the ansible variable value
+  hosts: localhost
+  gather_facts: false
+  vars:
+    x: 10
+    name: "sachin"
+  vars_prompt:
+    - name: y
+      prompt: Enter the value for y
+      private: false
+    - name: UserName
+      prompt: Enter the user Name
+      private: False
+    - name: Password
+      prompt: Enter user password
+      private: true # hide the password, at time of typing
+  tasks:
+    - name: print the ansible variable value
+      debug:
+        msg:
+          - "This is value of x: {{x}}"
+          - "This is value of name: {{name}}"
+          - "This is value of y: {{y}}"
+          - "UserName is {{UserName}} and  Password is {{Password}}"
+         

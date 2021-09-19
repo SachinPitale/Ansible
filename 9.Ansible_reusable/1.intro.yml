@@ -1,0 +1,34 @@
+# All  import* statements are pre-processed at the time playbook are parsed
+# All include* statements are processed as they encontered during the execution of the playbook
+# so import is static, include is dynamic
+# Ansible has following modules for import and include
+  # import_playbook, import_tasks, import_vars, import_role
+  # include_playbook, include_tasks, include_vars, include_role
+
+
+---
+- name: Configure webserver
+  hosts: webserver
+  gather_facts: true
+  become: yes
+  tasks:
+    - name: Installing webserver on redhat family
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family=="Redhat"
+    - name: Install webserver on Debian family
+      apt-get:
+        name: apache2
+        state: present
+      when: ansible_os_family=="Debian"
+    - name: Installing java on Redhat family
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+      when: ansible_os_family=="Redhat"
+    - name: Installing java on Debian family
+      apt-get:
+        name: openjdk-8-jdk
+        state: present
+      when: ansible_os_family=="Debian"

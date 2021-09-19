@@ -1,0 +1,15 @@
+---
+- name: This is simple play to understand the Debug module
+  hosts: local
+  tasks:
+    - name: To print the first message using debug module
+      debug: msg="Welcome to ansible"
+    - name: To print the second message using debug module
+      debug:
+        msg: "I am learning ansible"  
+    - name: Print multiple message using debug command
+      debug:
+        msg:
+          - "Welcome to Ansible Playbook"
+          - "These are the basic concept"
+          - "We will discuss advanced concept later"

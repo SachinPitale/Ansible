@@ -1,0 +1,34 @@
+# Steps  to create Custom fact
+# Step1 : Create /etc/ansible/facts.d on Managed Nodes
+# step2 : Inside of facts.d directory place one or more custom facts files with extension as .fact
+# Step3 : Output of the fact file should be json
+# step4 : The fact file should have execution permission
+
+# Ansible custom facts information store in ansible_local
+
+
+# sample fact file for git and http version check
+# git_httpd_version.facts
+git_version=$(git --version| awk '{print $3}')
+httpd_version=$(httpd --version| awk 'NR==1 { print $3}')
+cat  << EOF 
+{
+  "Git_version" : "$git_version",
+  "httpd_version" : "httpd_version"
+}
+
+
+os=$(hostnamectl | awk -F ":" 'NR==7{print $2}')
+Kernel=$(hostnamectl | awk -F ":" 'NR==8{print $2}')
+Arch=$(hostnamectl | awk -F ":" 'NR==9{print $2}')
+
+cat << EOF
+{
+  "OS_Version" : "$os",
+  "Kernal_version": "$Kernel",
+  "Arch" : "$Arch"
+}
+EOF
+
+
+with open('event.csv', 'a') as f_object:

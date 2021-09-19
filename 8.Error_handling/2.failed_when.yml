@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: list all the files form /home directory
+      command: "ls /home"
+      register: out
+      failed_when: out.rc==0
+    - debug: var=out

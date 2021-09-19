@@ -1,0 +1,16 @@
+# Install and uninstall package with command line
+# Require argument
+# pkg = It will ask package name, which you want to install or uninstall like "httpd, nginx"
+# state_req  value is "present, absent, "
+# example
+# ansible-playbook 16.install_uninstall_package_with_cmd_arg.yml -e "pkg=httpd state_req=present"
+---
+- name: Playbook for install/uninstall {pkg}
+  hosts: localhost
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Package name is {pkg}
+      yum:
+        name: "{{pkg}}"
+        state = "{{state_req}}"

@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install apache package on ubuntu
+      apt:
+        name: apache
+        state: latest
+    - name: Install wget 
+      apt:
+        name: wget
+        state: latest
+    - name: Install vim
+      apt:
+        name: vim
+        state: latest

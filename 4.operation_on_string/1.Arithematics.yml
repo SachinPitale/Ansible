@@ -1,0 +1,16 @@
+---
+- name: Arithematics playbook
+  hosts: localhost
+  vars:
+    x: 56
+    y: 94
+  tasks:
+    - name: Displaying values
+      debug:
+        msg:
+          - "This value of x: {{x}}"
+          - "This value of y: {{y}}"
+          - "{{x}} + {{y}} = {{x+y}}"
+          - "{{x}} - {{y}} = {{x-y}}"
+          - "{{x}} / {{y}} = {{x/y}}"
+          - "{{x}} * {{y}} = {{x*y}}"

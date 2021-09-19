@@ -1,0 +1,42 @@
+# Create and update file
+# syntax
+# ansible all -m file -a "path=/home/ansadmin/abc.txt state=touch"
+
+# Create a file 
+ansible all -m file -a "path=/tmp/demo.txt state=touch"
+
+# Create a file with permission, use mode parameter
+ansible all -m file -a "path=/tmp/demo.txt state=touch mode=0777"
+
+# Remove the file using absent parameter
+ansible all -m file -a "path=/tmp/demo.txt state=absent"
+
+# Create a directory 
+ansible all -m file -a "path=/tmp/demo state=directory"
+
+# create a file in /root directory use (-b)
+ansible all -b -m file -a "path=/tmp/demo.txt state=touch"
+
+# List of file module
+
+acl – Set and retrieve file ACL information
+archive – Creates a compressed archive of one or more files or trees
+assemble – Assemble configuration files from fragments
+blockinfile – Insert/update/remove a text block surrounded by marker lines
+copy – Copy files to remote locations
+fetch – Fetch files from remote nodes
+file – Manage files and file properties
+find – Return a list of files based on specific criteria
+ini_file – Tweak settings in INI files
+iso_extract – Extract files from an ISO image
+lineinfile – Manage lines in text files
+patch – Apply patch files using the GNU patch tool
+read_csv – Read a CSV file
+replace – Replace all instances of a particular string in a file using a back-referenced regular expression
+stat – Retrieve file or file system status
+synchronize – A wrapper around rsync to make common tasks in your playbooks quick and easy
+tempfile – Creates temporary files and directories
+template – Template a file out to a remote server
+unarchive – Unpacks an archive after (optionally) copying it from the local machine
+xattr – Manage user defined extended attributes
+xml – Manage bits and pieces of XML files or strings

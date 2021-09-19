@@ -1,0 +1,24 @@
+# Tasks : search on google list of ansible filters
+
+
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    x: "This is abOut Ansible FilTERS AND mETHODs"
+    y: "56"
+    z: [4,5,6,7,8,97]
+  tasks:
+    - debug: 
+        msg:
+          - "{{x}}"
+          - "{{x|lower}}" # Ansible filter
+          - "{{x|upper}}"
+          - "{{x|title}}"
+          - "{{x.upper()}}" # Python method
+          - "{{x.title()}}"
+          - "{{x.title()}}" 
+          - "{{y|int}}"
+          - "The max from z is : {{z|max}}"
+          - "The min from z is : {{z|min}}"
+          - "{{x.split()}}"

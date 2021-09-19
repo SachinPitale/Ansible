@@ -1,0 +1,31 @@
+# Tests for variables (is defined and is undefined)
+# Tests for strings (strx is lower, strx is upper, strx is string )
+# Tests for number (numx is divisibleby 5, is odd, is even, is number)
+# Tests for paths ( path1 is directory, path2 is file, path3 is link, path1 is exists, path2 is same_file(path4) )
+---
+- name: This is about the test operator
+  hosts: localhost
+  gather_facts: false
+  vars:
+    x : 40
+    script: "ansible"
+    path: "/tmp/"
+    link_path: '/tmp/demo.txt'
+  tasks:
+    - debug:
+        msg:
+          - "The value of x is : {{x}}"
+          - "x is defined : {{x is defined }}"
+          - "z is undefined :  {{z is undefined }}"
+          - "script is lower : {{script is lower}}"
+          - "script is upper : {{script is upper}}"
+          - "script is string : {{script is string}}"
+          - "x is divisibleby by 5 {{x is divisibleby 2}}"
+          - " x is even: {{x is even }}"
+          - " y is odd: {{x is odd}}"
+          - " The given path is: {{path}}"
+          - " path is file : {{path is file }}"
+          - "path is directory {{path is directory}}"
+          - "path is exists : {{path is exists}} "
+          - "link_path is link {{link_path is link}}"
+

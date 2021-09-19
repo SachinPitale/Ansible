@@ -1,0 +1,21 @@
+---
+- name: Practice on Arithmetic Operator
+  hosts: localhost
+  gather_facts: false
+  vars_prompt:
+    - name: x
+      prompt: Please enter x value
+      private: no  # display your input
+    - name: y
+      promot: Enter y value
+      private: no
+  vars:
+    a: 56
+  
+  tasks:
+    - debug:
+        msg:
+          - "The value of x is: {{x}}"
+          - "The value of x is: {{y}}"
+          - "Addition of  both the values {{x}} and {{y}} = {{x|int +y|int}}"
+          - "The {{a}} - {{y}} {{a-y|int}}"

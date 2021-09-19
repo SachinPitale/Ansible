@@ -1,0 +1,16 @@
+
+# To copy file from ansible master server to Ansible node
+
+#Copy file 
+ansible all -m copy -a "src=/home/abc.txt dest=/tmp/"
+ansible all -m copy -a "src=abc.txt dest=/tmp/"
+# Create a file in destination server using copy module
+
+ansible all -m copy -a "content='Hello file is created by ansible copy module' dest=/tmp/hello.txt"
+
+# Create a backup of existing file
+
+ansible all -m copy -a "content='This is file is created by ansible copy module' dest=/tmp/hello.txt backup=yes"
+
+# Create file with new line
+ansible all -m copy -a "content='This is file is created by ansible copy module \n' dest=/tmp/hello.txt backup=yes"

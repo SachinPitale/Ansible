@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: uninstall httpd
+      apt:
+        name: httpd
+        state: absent
+    - name: uninstall wget
+      apt:
+        name: wget
+        state: absent
+    - name: uninstall vim
+      apt:
+        name: vim
+        state: absent

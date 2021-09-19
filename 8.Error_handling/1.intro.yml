@@ -1,0 +1,20 @@
+# Error Handling
+# Ansible normally has defaults that makes that make sure to check the return codes of command/module and it fails if return code is non-zero.
+# If the current tasks fails then playbook will stop the executing of remaining tasks on the hosts
+# 
+
+
+---
+- name: use the ignore_errors error handling
+  hosts: localhost
+  tasks:
+    - name: list all the file from hommee directory
+      command: "ls /hommee"
+      register: home_out
+      ignore_errors: yes
+    - debug: var=home_out
+    - name: list all the file from tmp directory
+      command: "ls /tmp"
+      register: tmp_out
+    - debug: var=tmp_out
+      

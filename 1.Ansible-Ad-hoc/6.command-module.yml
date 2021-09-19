@@ -1,0 +1,15 @@
+# Ansible ad-hoc command use default module as command, if you not pass in module in ad-hoc command
+# Command module is more secure, because it will not be affected by the user's environment 
+
+ansible all -m command -a "uptime"
+ansible all -a "uptime"
+
+# command module doesn't support special character like (<,> | &)
+
+ansible all -m command -a "ls > demo.text"  # it will give error, (>) will not support
+
+# To support all the special character like (<,> | &)
+ansible all -m shell -a "ls > demo.txt"
+
+ansible all -m shell -a "df -h"
+

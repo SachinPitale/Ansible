@@ -1,0 +1,16 @@
+# Ansible Facts
+#Ansible Facts are nothing but information about Managed Nodes like : OS distribution, release, processor, python
+# The task of collecting this remote system information called as gathering  facts.
+# you can Gather/collect Facts using setup module in ad-hoc command
+# Note: Ansible Playbooks call this setup module by default to perform Gathering Facts task.
+# syntax
+# ansible group_name -m setup
+
+# To fetch particular property of setup command use filter paramter
+ansible all -m setup -a "filter=ansible_mounts"
+
+
+
+# There are two types of Ansible facts or variable for managed nodes
+# => Default Facts => Bydefault output of setup command
+# => Custom Facts => To Get user defined required facts 

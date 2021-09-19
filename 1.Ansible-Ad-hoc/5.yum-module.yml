@@ -1,0 +1,19 @@
+# Linux -> Module -> yum
+# Ubantu -> Module -> apt-get
+
+# Install git on Linux
+ansible all -b -m yum "name=git state=present"
+
+# Install git on Ubuntu
+ansible all -b -m apt "name=git state=present"
+
+# Install apache on Linux
+ansible all -b -m yum "name=httpd state=latest"
+
+# Install apache on Ubuntu
+ansible all -b -m apt "name=apache state=present"
+
+# Use platform dependent module is called packege
+
+ansible all -b -m pakage "name=gitstate=latest"
+

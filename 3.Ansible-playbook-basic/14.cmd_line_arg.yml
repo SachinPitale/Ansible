@@ -1,0 +1,26 @@
+# Command Line arguments are useful to pass variable from command line
+# We can pass different types of variables in different format.
+# scalar
+# Sequence
+# Map
+# File and variables
+# example
+# ansible-playbook 14.cmd_line_arg.yml -e "x=64" # Single Argument
+# ansible-playbook 14.cmd_line_arg.yml -e "x=64 y=94 z=126" # Multiple arugument
+# ansible-playbook 14.cmd_line_arg.yml -e "{"x":"64","y":"94","z":" 126"}"
+# ansible-playbook 14.cmd_line_arg.yml --extra-var "x=64"
+
+
+---
+- name: Pass command line argument in playbook
+  hosts: localhost
+  gathers_facts: False
+  tasks:
+    - name: To print command line arg value
+      debug:
+        var: x
+    - name: Print Y and Z command line argument
+      debug:
+        msg:
+          - "This is value of {{y}}"
+          - "This is value of {{z}}"

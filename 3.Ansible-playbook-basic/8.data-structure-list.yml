@@ -1,0 +1,57 @@
+# Data Structure or Data Collections are used to store multiple data/values
+# Scaler : store only one value per variable
+# list or sequences [] : store multiple values in list data type
+# Dict or map {} :  store key value pair  
+ 
+
+---
+- name: Define varialbe as list
+  hosts: local
+  gather_facts: False
+  vars:
+    x: 23
+# List variable     
+    packages: ['vim','wget','httpd','php','nano'] 
+    users:
+    - tom
+    - harry
+    - jerry
+    - luckshaw
+# Dict Variable or Map variable
+    web_server : {"Linux": "httpd", "Ubuntu": "apache2"} 
+    os_version:
+      'Linux': 'uname -r'
+      'Ubuntu': 'lsb_release -a'
+
+  tasks:
+    - name: print x variable
+      debug:
+        var: x
+    - name: print packages values of variables
+      debug:
+        var: packages
+    - name: print the users values
+      debug:
+        var: users
+    - name: print Dictionary variable
+      debug:
+        var: web_server
+    - name: print Dictionary variable
+      debug:
+        var: os_version
+    - name: print only first value of packages
+      debug:
+        var: packages[0]
+    - name: print all the key of dict varialbe
+      debug:
+        var: os_version.keys()
+    - name: print all the values of dict variable
+      debug:
+        var: os_version.values()
+    - name: print the Linux key value only
+      debug:
+        var: web_server['Linux']
+    - name: print the Ubuntu key value only
+      debug:
+        var: web_server.get('Ubuntu')
+

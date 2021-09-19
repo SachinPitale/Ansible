@@ -1,0 +1,18 @@
+#Fetch module
+
+# To copy file from ansible node to ansible master node
+# syntax
+
+# ansible db_servers -m fetch -a "scr=/home/abc.txt dest=/home/xyz.txt"
+
+
+# Fetch the file from remoter server
+
+ansible all -m fetch -a "src=/tmp/demo.txt dest=./demo/" # it will create absoultate file structure in demo directory
+
+# To remove absulate file structrue use flat=yes, But it will abort if we download two file with same name
+
+ansible all -m fetch -a "src=/tmp/demo.txt dest=./demo/ flat=yes"
+
+# To avoid the duplicate file names use {{inventory_hostname}} variable
+ansible all -m fetch -a "src=/tmp/demo.txt dest=./demo/{{inventory_hostname}}_demo.txt flat=yes"
