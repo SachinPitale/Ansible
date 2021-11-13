@@ -16,10 +16,9 @@
         - php-mysql
       state: present
   - name: create info.php file
-    file:
+    copy:
       dest: /var/www/html/info.php
       content: | 
         <?php
         phpinfo();
         ?>
-        
