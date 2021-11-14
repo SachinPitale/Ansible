@@ -7,7 +7,7 @@ description: Playbook will run on ubantu20 and centos7
 ```t
 ansible-playbook -i inventory apache.yml --syntax-check
 ```
-##  Run the ansible playbook
+##  Run the ansible playbook by following command
 ```t
 ansible-playbook -i inventory apache.yml
 
