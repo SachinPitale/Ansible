@@ -1,0 +1,72 @@
+---
+- name: install webserver on Ubuntu and Centos os
+  hosts: webserver
+  become: yes
+  tasks:
+  - name: fail on unsupport os version
+    fail:
+      msg: This playbook supports only centos 7 and ubuntu 20 distributions
+    when: (ansible_facts['distribution'] != "CentOS") or (ansible_facts['distribution'] != "Ubuntu") or (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] != "20") or or (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] != "7") 
+  - name: Install apache2
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+    when:
+      - ansible_facts['os_family'] == "Debian"
+      - ansible_facts['distribution_major_version'] == "20" 
+  - name: Install php modules
+    apt:
+      name:
+        - php
+        - libapache2-mod-php
+        - php-mysql
+      state: present
+    when: 
+      - ansible_facts['os_family'] == "Debian"
+      - ansible_facts['distribution_major_version'] == "20" 
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+    when: 
+      - ansible_facts['os_family'] == "RedHat"
+      - ansible_facts['distribution_major_version'] == "7" 
+  - name: Install php modules
+    yum:
+      name:
+        - php
+        - php-mysql
+        - php-fpm
+      state: present 
+    when: 
+      - ansible_facts['os_family'] == "RedHat"
+      - ansible_facts['distribution_major_version'] == "7"    
+  - name: create info.php file
+    copy:
+      dest: /var/www/html/info.php
+      content: | 
+        <?php
+        phpinfo();
+        ?>
+    notify:
+      - Restart httpd
+      - Restart apache2
+  - name: Restart httpd
+    service:
+      name: httpd
+      state: restarted
+      enabled: yes
+    when: 
+      - ansible_facts['os_family'] == "RedHat"
+      - ansible_facts['distribution_major_version'] == "7"   
+  - name: Restart apache2
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+    when: 
+      - ansible_facts['os_family'] == "Debian"
+      - ansible_facts['distribution_major_version'] == "20" 
+
+    

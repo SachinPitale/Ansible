@@ -8,7 +8,7 @@
       name: apache2
       state: present
       update_cache: yes
-    when: ansible_facts['os_family'] == "Debian"      
+    when: ansible_facts['os_family'] == "Debian"  
   - name: Install php modules
     apt:
       name:
