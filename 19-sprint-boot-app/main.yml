@@ -21,7 +21,7 @@
   - name: Download application from repo
     get_url:
       url: "https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar"
-      dest: " {{ app_home }} "
+      dest: "{{ app_home }}/spring-petclinic-2.4.2.jar"
   - name: Give app user permission to application jar file
     ansible.builtin.file:
       path: "{{ app_home }}/spring-petclinic-2.4.2.jar"
