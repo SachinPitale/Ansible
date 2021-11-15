@@ -5,31 +5,31 @@ ansible all -m ping
 
 
 # To check the uptime of system
-ansible all -m shell -a "uptime"
+#ansible all -m shell -a "uptime"
 
 # Check RAM usage only on two groups
-ansible webserver:dbserver -m shell -a "free -m"
+#ansible webserver:dbserver -m shell -a "free -m"
 
 # use custom inventory file
-ansible -i my_inventory all -m shell -a "df -h"
+#ansible -i my_inventory all -m shell -a "df -h"
 
 
 
 
 # To find detail information about the any module
-ansible-doc yum
+#ansible-doc yum
 
 # When we run any ad-hoc command, that ansible push the module to ansible node and this module store in user home directory as .ansible
 # fork = define ansible executing playbook to number of server, default value is 5  
 
 # to list all the ansible parameter option
-ansible -h
+#ansible -h
 
 # To find list of information name by group use --list-hosts
-ansible all -m ping --list-hosts
+#ansible all -m ping --list-hosts
 
 # To install the package without configure ssh password less connection to ansible node server
-ansible all -m yum -a "name=httpd state=present" -k -b -K
+#ansible all -m yum -a "name=httpd state=present" -k -b -K
 
 -k: ask ansible password
 -b : become root user
@@ -48,6 +48,24 @@ ansible all -m debug -a "var=groups"
 ansible all -m debug -a "var=groups.keys() "
 # To list all the module
 ansible-doc -l 
+
+# ansible -i hosts -m setup all
+# ansible@vm1:~/git/ansible/Ansible/14.phphttpd$ ansible all -m setup -a 'filter=*_os_*'
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_os_family": "Debian",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+10.1.0.5 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_os_family": "RedHat",
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false
+}
+ansible@vm1:~/git/ansible/Ansible/14.phphttpd$
 
 optional arguments:
 --ask-vault-pass      ask for vault password
