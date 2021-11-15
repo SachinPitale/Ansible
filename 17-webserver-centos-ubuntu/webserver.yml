@@ -29,7 +29,7 @@
         <?php 
         phpinfo(); 
         ?>
-    handler:
+    handlers:
       - Restart apache
   - name: Restart apache
     service:
