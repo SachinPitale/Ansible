@@ -28,4 +28,7 @@
     ansible.builtin.unarchive:
       src: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
       dest: "{{ tomcat_user_directory }}"
-
+  - name: create a symlink
+    ansible.builtin.file:
+      src: "{{ tomcat_user_directory }}/apache-tomcat-{{ tomcat_version }}"
+      dest: "{{ tomcat_user_directory }}/latest"
