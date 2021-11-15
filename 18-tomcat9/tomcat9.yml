@@ -72,7 +72,7 @@
     when: not tomcat_latest_dir.stat.exists
   - name: create tomcat service file
     copy:
-      src: files/{{ tomcat_service_local }}
+      src:  tomcat_service_local
       dest: "{{ tomcat_service_dest }}"
     
   - name: ensure tomcat is running

@@ -1,0 +1,33 @@
+---
+- name: Configure spring boot application
+  hosts: appserver
+  become: yes
+  tasks:
+  - name: Install Java
+    yum:
+      name: " {{ java_version }} "
+      state: present
+  - name: Create application directory
+    ansible.builtin.file:
+      name: " {{ app_home }} "
+      state: directory
+      mode: '0755'
+  - name: Create application user
+    ansible.builtin.user:
+      name: " {{ app_user }} "
+      home: " {{ app_user_home }}"
+      group: " {{ app_user }} "
+  - name: Download application from repo
+    get_url:
+      src: "https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar"
+      dest: " {{ app_home }} "
+  - name: Give app user permission to application jar file
+    ansible.builtin.file:
+      path: "{{ app_home }}/spring-petclinic-2.4.2.jar"
+      owner: " {{ app_user }} "
+      group: " {{ app_user }} "
+      mode: '1777'
+  - name: copy application service
+    copy:
+      src: files/spc.service
+      dest: " {{ service_location }}"
