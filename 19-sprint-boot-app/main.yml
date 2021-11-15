@@ -12,9 +12,11 @@
       name: "{ app_home }}"
       state: directory
       mode: '0755'
-  - name: Create application user
+ - name: add application user 
     ansible.builtin.user:
-      name: " {{ app_user }} "
+      name: "{{ app_user }}"
+      home: "{{ app_user_home }}"
+      shell: "{{ app_user_shell }}"
       state: present
   - name: Download application from repo
     get_url:
