@@ -55,6 +55,6 @@
       var: tomcat_executables
   - name: change permission of shell files
     file:
-      name: "{item}" 
+      name: "{{ item }}" 
       mode: 0751
     with_items: "{{ tomcat_executables }}"
