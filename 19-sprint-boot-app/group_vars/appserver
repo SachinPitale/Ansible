@@ -1,4 +1,4 @@
 app_home: /usr/share/spc
 app_user: spc
-app_user_home: /home/spc
+app_user_home: /opt/spc
 service_location: /etc/systemd/system/spc.service
