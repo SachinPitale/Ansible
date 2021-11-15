@@ -40,4 +40,11 @@
       owner: "{{ tomcat_user }}"
       group: "{{ tomcat_user }}"
       recurse: yes
-  
+  - name: find all the shell files in the binaries
+    find:
+      path: "{{ tomcat_user_directory }}/latest/bin/"
+      patterns: "*.sh"
+    register: shellscriptfiles
+  - name: print the values
+    debug:
+      var: shellscriptfiles
