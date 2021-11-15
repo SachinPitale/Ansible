@@ -73,7 +73,7 @@
     - name: reload and enable tomcat
       ansible.builtin.systemd:
         name: tomcat.service
-        state: reloaded
+        state: restarted
         enabled: yes
         daemon_reload: yes
 
