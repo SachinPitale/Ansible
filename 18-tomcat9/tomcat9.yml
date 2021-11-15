@@ -27,5 +27,5 @@
   - name: untar the tomcat package
     ansible.builtin.unarchive:
       src: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
-      dest: {{ tomcat_user_directory }}
+      dest: "{{ tomcat_user_directory }}"
 
