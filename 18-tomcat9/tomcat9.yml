@@ -32,3 +32,4 @@
     ansible.builtin.file:
       src: "{{ tomcat_user_directory }}/apache-tomcat-{{ tomcat_version }}"
       dest: "{{ tomcat_user_directory }}/latest"
+      state: link
