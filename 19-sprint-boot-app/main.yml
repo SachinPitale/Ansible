@@ -15,7 +15,6 @@
   - name: Create application user
     ansible.builtin.user:
       name: " {{ app_user }} "
-      home: " {{ app_user_home }}"
       state: present
   - name: Download application from repo
     get_url:
