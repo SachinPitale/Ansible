@@ -33,3 +33,11 @@
       src: "{{ tomcat_user_directory }}/apache-tomcat-{{ tomcat_version }}"
       dest: "{{ tomcat_user_directory }}/latest"
       state: link
+  - name: give ownership to tomcat user and group
+    ansible.builtin.file:
+      path: "{{ tomcat_user_directory }}"
+      state: directory
+      owner: "{{ tomcat_user }}"
+      group: "{{ tomcat_user }}"
+      recurse: yes
+  
