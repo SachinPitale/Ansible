@@ -44,12 +44,12 @@
     find:
       path: "{{ tomcat_user_directory }}/latest/bin/"
       patterns: "*.sh"
-    register: shellscriptfiles
+    register: shfiles
   - name: print the values
     debug:
-      var: shellscriptfiles
+      var: shfiles
   - set_fact: 
-      tomcat_executables: "{{ shellscriptfiles.files | map(attribute='path') | list )}}"
+      tomcat_executables: "{{ shfiles.files | map(attribute='path') | list )}}"
   - name: print the values
     debug:
       var: tomcat_executables
