@@ -48,3 +48,8 @@
   - name: print the values
     debug:
       var: shellscriptfiles
+  - set_fact: 
+      tomcat_executables: "{{ shellscriptfiles.files | map(attribute='path') | list )}}"
+  - - name: print the values
+    debug:
+      var: tomcat_executables
