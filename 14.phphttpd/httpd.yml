@@ -1,0 +1,30 @@
+---
+- name: Install httpd on centos server
+  hosts: centos
+  become: yes
+  tasks:
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+  - name: Install php modules
+    yum:
+      name:
+        - php
+        - php-mysql
+        - php-fpm
+      state: present
+  - name: create info.php file
+    copy:
+      dest: /var/www/htmp/info.php
+      content: |
+        <?php 
+          phpinfo(); 
+        ?>
+    notify:
+      - Restart httpd
+  - name: Restart httpd
+    service:
+      name: httpd
+      state: restarted
+      enabled: yes
