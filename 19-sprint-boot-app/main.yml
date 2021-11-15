@@ -27,7 +27,7 @@
       path: "{{ app_home }}/spring-petclinic-2.4.2.jar"
       owner: " {{ app_user }} "
       group: " {{ app_user }} "
-      mode: '0777'
+      mode: '1777'
     become: yes
   - name: copy application service
     copy:
