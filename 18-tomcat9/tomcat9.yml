@@ -4,7 +4,7 @@
   become: yes
   tasks:
   - name: Install java and update package
-    apt:
+    package:
       name: "{{ Java_version }}"
       state: present
       update_cache: yes
