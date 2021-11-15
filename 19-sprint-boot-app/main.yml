@@ -28,6 +28,7 @@
       owner: " {{ app_user }} "
       group: " {{ app_user }} "
       mode: '0777'
+    become: yes
   - name: copy application service
     copy:
       src: files/spc.service
