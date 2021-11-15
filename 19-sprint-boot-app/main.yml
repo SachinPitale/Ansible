@@ -12,7 +12,7 @@
       name: "{ app_home }}"
       state: directory
       mode: '0755'
- - name: add application user 
+  - name: add application user 
     ansible.builtin.user:
       name: "{{ app_user }}"
       home: "{{ app_user_home }}"
