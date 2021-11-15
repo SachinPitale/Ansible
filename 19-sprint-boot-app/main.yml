@@ -5,11 +5,11 @@
   tasks:
   - name: Install Java
     yum:
-      name: " {{ java_version }} "
+      name: "{{ java_version }}"
       state: present
   - name: Create application directory
     ansible.builtin.file:
-      name: " {{ app_home }} "
+      name: "{ app_home }}"
       state: directory
       mode: '0755'
   - name: Create application user
