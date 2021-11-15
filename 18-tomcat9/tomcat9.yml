@@ -7,6 +7,7 @@
     tomcat_user: tomcat
     tomcat_user_directory:  /opt/tomcat
     tomcat_user_shell:  /bin/false
+    tomcat_version: '9.0.54'
   tasks:
   - name: Install java and update package
     apt:
@@ -19,3 +20,12 @@
       home: "{{ tomcat_user_directory }}"
       shell: "{{ tomcat_user_shell }}"
       state: present
+  - name: download tomcat distribution
+    get_url:
+      url: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+      dest: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
+  - name: untar the tomcat package
+    ansible.builtin.unarchive:
+      src: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
+      dest: {{ tomcat_user_directory }}
+
