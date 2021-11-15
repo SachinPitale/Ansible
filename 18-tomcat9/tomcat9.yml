@@ -2,8 +2,6 @@
 - name: Install tomcat9
   hosts: appserver
   become: yes
-  vars_files:
-    - vars/defaults.yml
   tasks:
   - name: Install java and update package
     apt:
