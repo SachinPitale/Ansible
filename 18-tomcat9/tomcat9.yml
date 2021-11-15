@@ -1,0 +1,21 @@
+---
+- name: Install tomcat9
+  hosts: appserver
+  become: yes
+  vars:
+    Java_version = openjdk-11-jdk
+    tomcat_user = tomcat
+    tomcat_user_directory = /opt/tomcat
+    tomcat_user_shell = /bin/false
+  tasks:
+  - name: Install java and update package
+    apt:
+      name: "{{ Java_version }}"
+      state: present
+      cache_updated: yes
+  - name: add tomcat user
+    ansible.builtin.user:
+      name: "{{ tomcat_user }}"
+      home: "{{ tomcat_user_directory }}"
+      shell: "{{ tomcat_user_shell }}"
+      state: present
