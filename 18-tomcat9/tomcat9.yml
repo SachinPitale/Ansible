@@ -19,7 +19,7 @@
   - name: Check if the latest directory in tomcat is present
     ansible.builtin.stat:
       path: "{{ tomcat_user_directory}}/latest"
-      register: tomcat_latest_dir
+    register: tomcat_latest_dir
   - name: download tomcat distribution
     get_url:
       url: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
