@@ -16,7 +16,6 @@
     ansible.builtin.user:
       name: " {{ app_user }} "
       home: " {{ app_user_home }}"
-      group: " {{ app_user }} "
       state: present
   - name: Download application from repo
     get_url:
