@@ -1,0 +1,55 @@
+---
+- name: install webserver on Ubuntu and Centos os
+  hosts: webserver
+  become: yes
+  tasks:
+  - name: Install apache2
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+    when: ansible_facts['os_family'] == "Debian"      
+  - name: Install php modules
+    apt:
+      name:
+        - php
+        - libapache2-mod-php
+        - php-mysql
+      state: present
+    when: ansible_facts['os_family'] == "Debian" 
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+    when: ansible_facts['os_family'] == "RedHat" 
+  - name: Install php modules
+    yum:
+      name:
+        - php
+        - php-mysql
+        - php-fpm
+      state: present 
+    when: ansible_facts['os_family'] == "RedHat"   
+  - name: create info.php file
+    copy:
+      dest: /var/www/html/info.php
+      content: | 
+        <?php
+        phpinfo();
+        ?>
+    notify:
+      - Restart httpd
+      - Restart apache2
+  - name: Restart httpd
+    service:
+      name: httpd
+      state: restarted
+      enabled: yes
+    when: ansible_facts['os_family'] == "RedHat" 
+  - name: Restart apache2
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+    when: ansible_facts['os_family'] == "Debian"   
+    
