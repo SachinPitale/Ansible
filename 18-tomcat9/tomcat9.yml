@@ -2,6 +2,10 @@
 - name: Install tomcat9
   hosts: appserver
   become: yes
+  vars_files:
+    - group_vars/appserver
+    - host_vars/10.1.0.5
+    - host_vars/localhost
   tasks:
   - name: Install java and update package
     package:
