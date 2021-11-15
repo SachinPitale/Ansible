@@ -67,12 +67,12 @@
     when: not tomcat_latest_dir.stat.exists
   - name: create tomcat service file
     copy:
-      src: tomcat.service
+      src: files/tomcat.service
       dest: "{{ tomcat_service_dest }}"
     
   - name: ensure tomcat is running
     ansible.builtin.systemd:
-      name: files/tomcat.service
+      name: tomcat.service
       state: started
   - name: copy tomcat users file
     ansible.builtin.copy:
