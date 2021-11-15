@@ -8,6 +8,7 @@
     tomcat_user_directory:  /opt/tomcat
     tomcat_user_shell:  /bin/false
     tomcat_version: '9.0.54'
+    tomcat_service_dest: /etc/systemd/system/tomcat.service
   tasks:
   - name: Install java and update package
     apt:
@@ -58,3 +59,22 @@
       name: "{{ item }}" 
       mode: 0751
     with_items: "{{ tomcat_executables }}"
+  - name: create tomcat service file
+    copy:
+      src: tomcat.service
+      dest: "{{ tomcat_service_dest }}"
+    notify:
+      - reload and enable tomcat
+  - name: ensure tomcat is running
+    ansible.builtin.systemd:
+      name: tomcat.service
+      state: started
+  handler:
+    - name: reload and enable tomcat
+      ansible.builtin.systemd:
+        name: tomcat.service
+        state: reloaded
+        enabled: yes
+        daemon_reload: yes
+
+  
