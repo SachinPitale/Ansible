@@ -2,3 +2,4 @@ app_home: /usr/share/spc
 app_user: spc
 app_user_home: /opt/sprintboot
 service_location: /etc/systemd/system/spc.service
+app_user_shell:  /bin/false
